@@ -10,6 +10,21 @@ This sample shows how build and upload output artifact of a Java application usi
 
 ## Procedure to use this illustration.
 
+### OCI Access setups.
+
+- Create an OCI Dynamic group and add the below rules. Replace <YOUR_COMPARMENT_OCID> with your compartment OCID. - https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingdynamicgroups.htm 
+
+```java
+ALL {resource.type = 'devopsbuildpipeline', resource.compartment.id = '<YOUR_COMPARMENT_OCID>'}
+```
+
+- Create an OCI policy and add the following policy statements. Replace <YOUR_DynamicGroup_NAME> with the name of your dynamic group for DevOps and with the name of your compartment. - https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/policies.htm
+
+```java
+Allow dynamic-group <YOUR_DynamicGroup_NAME> to manage ons-topics in compartment <YOUR_COMPARTMENT_NAME>
+Allow dynamic-group <YOUR_DynamicGroup_NAME> to manage all-artifacts in compartment <YOUR_COMPARTMENT_NAME>
+```
+
 ### OCI Notifications
 - Create an OCI notification topic - https://docs.oracle.com/en-us/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createTopic
 
@@ -20,4 +35,8 @@ This sample shows how build and upload output artifact of a Java application usi
 
 ![](images/oci-artifact-repo.png)
 
+### OCI Devops Setup.
+
+- Create an OCI notification topic - https://docs.oracle.com/en-us/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createTopic
+- Create a DevOps project - https://docs.oracle.com/en-us/iaas/Content/devops/using/create_project.htm#create_a_project. Associate with the notification topic.
 
