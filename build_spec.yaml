@@ -52,15 +52,7 @@ steps:
         runAs: root
 
 
-#outputArtifacts:
-#  - name: golan_app_base_image
-#    type: DOCKER_IMAGE
-#    # this location tag doesn't effect the tag used to deliver the container image
-#    # to the Container Registry
-#    location: golan_app_base:latest
-#
-#  - name: golan_kube_manifest
-#    type: BINARY
-#    # this location tag doesn't effect the tag used to deliver the container image
-#    # to the Container Registry
-#    location: ${OCI_PRIMARY_SOURCE_DIR}/deployment_manifest.yaml
+outputArtifacts:
+  - name: application_jar
+    type: BINARY
+    location: ${OCI_PRIMARY_SOURCE_DIR}/build/libs/jb-hello-world-*.jar
